@@ -52,3 +52,19 @@ switch (subcommand) {
         process.exit(1)
 }
 
+// protocol: http
+
+// HTTP request
+    //version
+    //headers
+    //body
+
+    //path
+    //method
+
+// HTTP response
+    // version
+    //headers
+    //body
+
+    //statuscode

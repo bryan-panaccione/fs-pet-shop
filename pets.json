@@ -1,1 +1,53 @@
-[{"age":7,"kind":"rainbow","name":"fido"},{"age":5,"kind":"snake","name":"Buttons"},{"age":3,"kind":"bryan","name":"bird"},{"age":6,"kind":"bryan","name":"bird"},{"age":6,"kind":"bryan","name":"bird"},{"age":6,"kind":"bryan","name":"bird"},{"age":6,"kind":"bryan"},{"age":6},{"age":null},{"age":6},{"age":null},{"age":4,"kind":"reagan","name":"squirrel"}]
+[
+    {
+        "age": 7,
+        "kind": "rainbow",
+        "name": "fido"
+    },
+    {
+        "age": 5,
+        "kind": "snake",
+        "name": "Buttons"
+    },
+    {
+        "age": 3,
+        "kind": "bryan",
+        "name": "bird"
+    },
+    {
+        "age": 6,
+        "kind": "bryan",
+        "name": "bird"
+    },
+    {
+        "age": 6,
+        "kind": "bryan",
+        "name": "bird"
+    },
+    {
+        "age": 6,
+        "kind": "bryan",
+        "name": "bird"
+    },
+    {
+        "age": 6,
+        "kind": "bryan"
+    },
+    {
+        "age": 6
+    },
+    {
+        "age": null
+    },
+    {
+        "age": 6
+    },
+    {
+        "age": null
+    },
+    {
+        "age": 4,
+        "kind": "reagan",
+        "name": "squirrel"
+    }
+]
