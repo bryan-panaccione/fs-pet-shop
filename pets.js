@@ -1,6 +1,7 @@
 const fs = require('fs')
 
 
+
 const subcommand = process.argv[2]
 
 switch (subcommand) {
@@ -29,20 +30,34 @@ switch (subcommand) {
             process.exit(1)
         }
         fs.readFile('./pets.json', 'utf-8', (err, data) => {
-            const originalDataParsed = JSON.parse(data)
+            const dataParsed = JSON.parse(data)
             if (err) throw err;
             const newPet = { age, kind, name }
-            originalDataParsed.push(newPet)
-            console.log(originalDataParsed)
-            const readyToAdd = JSON.stringify(originalDataParsed)
+            dataParsed.push(newPet)
+            const readyToAdd = JSON.stringify(dataParsed)
             fs.writeFile('./pets.json', readyToAdd, (err2, data2) => {
                 if (err2) throw err2;
-                console.log(originalDataParsed)
             })
         })
         break;
     case 'destroy':
         console.log('destroying file')
+        const index2 = Number.parseInt(process.argv[3])
+        if (Number.isNaN(index2)){
+            console.log(`Usage: node pets.js destroy INDEX`)
+            process.exit(1);
+        } 
+        fs.readFile('./pets.json', 'utf-8', (err,data)=>{
+            console.log('ova here')
+            if(err) throw err;
+            const parseData = JSON.parse(data);
+            parseData.splice(index2, 1)
+            fs.writeFile('./pets.json', JSON.stringify(parseData), (err2, data2) =>{
+                if(err2) throw err2;
+                console.log(parseData)
+            })
+
+        })
         break;
     case 'update':
         console.log('updating file')
@@ -52,6 +67,8 @@ switch (subcommand) {
         process.exit(1)
 }
 
+//server.listen(PORT)
+//console.log(`Listening on Port ${PORT}`)
 // protocol: http
 
 // HTTP request
