@@ -1,1 +1,1 @@
-[{"age":300,"kind":"Tortoise","name":"ReaganJr"},{"age":300,"kind":"Tortoise","name":"ReaganJr"},{"age":5,"kind":"dog","name":"steve"},{"age":7,"kind":"cat","name":"erik"}]
+[{"age":300,"kind":"Tortoise","name":"ReaganJr"},{"upAge":2,"upType":"b","upName":"d"},{"age":5,"kind":"dog","name":"steve"},{"age":7,"kind":"cat","name":"erik"}]

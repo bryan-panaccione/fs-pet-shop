@@ -61,8 +61,25 @@ switch (subcommand) {
         break;
     case 'update':
         console.log('updating file')
+        const upName = process.argv[6]
+        const upType = process.argv[5]
+        const upAge = Number.parseInt(process.argv[4])
+        const upIndex = Number.parseInt(process.argv[3])
+        if (Number.isNaN(upAge) || Number.isNaN(upIndex) || !upType || !upName){
+            console.error(`Usage: node pets.js update INDEX AGE TYPE NAME`)
+            process.exit(1)
+        }
+        fs.readFile('./pets.json', 'utf-8', (err,data) =>{
+            const parsedData = JSON.parse(data);
+            const upPet = {upAge, upType, upName}
+            parsedData[upIndex] = upPet
+            fs.writeFile('./pets.json', JSON.stringify(parsedData), (err2, data2) =>{
+                if(err2) throw err2;
+            })
+        })
         break;
     default:
+        console.log(process.argv)
         console.error('Usage: node pets.js [read | create | update | destroy]')
         process.exit(1)
 }
