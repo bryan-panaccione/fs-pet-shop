@@ -66,11 +66,11 @@ app.post('/pets', (req, res) => {
     if (!validatePet(newPet)) {
         res.send('Provide a valid pet')
     } else {
-        fs.readFile('./pets.json', 'utf-8', (err, data) => {
+        fs.readFile(DATAPATH, 'utf-8', (err, data) => {
             const dataParsed = JSON.parse(data)
             if (err) throw err;
             dataParsed.push(newPet)
-            fs.writeFile('./pets.json', JSON.stringify(dataParsed), (err2, data2) => {
+            fs.writeFile(DATAPATH, JSON.stringify(dataParsed), (err2, data2) => {
                 if (err2) throw err2;
                 res.send(JSON.stringify(dataParsed))
             })
