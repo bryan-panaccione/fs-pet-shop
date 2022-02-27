@@ -43,17 +43,17 @@ switch (subcommand) {
     case 'destroy':
         console.log('destroying file')
         const index2 = Number.parseInt(process.argv[3])
-        if (Number.isNaN(index2)){
+        if (Number.isNaN(index2)) {
             console.log(`Usage: node pets.js destroy INDEX`)
             process.exit(1);
-        } 
-        fs.readFile('./pets.json', 'utf-8', (err,data)=>{
+        }
+        fs.readFile('./pets.json', 'utf-8', (err, data) => {
             console.log('ova here')
-            if(err) throw err;
+            if (err) throw err;
             const parseData = JSON.parse(data);
             parseData.splice(index2, 1)
-            fs.writeFile('./pets.json', JSON.stringify(parseData), (err2, data2) =>{
-                if(err2) throw err2;
+            fs.writeFile('./pets.json', JSON.stringify(parseData), (err2, data2) => {
+                if (err2) throw err2;
                 console.log(parseData)
             })
 
@@ -65,16 +65,16 @@ switch (subcommand) {
         const upType = process.argv[5]
         const upAge = Number.parseInt(process.argv[4])
         const upIndex = Number.parseInt(process.argv[3])
-        if (Number.isNaN(upAge) || Number.isNaN(upIndex) || !upType || !upName){
+        if (Number.isNaN(upAge) || Number.isNaN(upIndex) || !upType || !upName) {
             console.error(`Usage: node pets.js update INDEX AGE TYPE NAME`)
             process.exit(1)
         }
-        fs.readFile('./pets.json', 'utf-8', (err,data) =>{
+        fs.readFile('./pets.json', 'utf-8', (err, data) => {
             const parsedData = JSON.parse(data);
-            const upPet = {upAge, upType, upName}
+            const upPet = { age: upAge, type: upType, name: upName }
             parsedData[upIndex] = upPet
-            fs.writeFile('./pets.json', JSON.stringify(parsedData), (err2, data2) =>{
-                if(err2) throw err2;
+            fs.writeFile('./pets.json', JSON.stringify(parsedData), (err2, data2) => {
+                if (err2) throw err2;
             })
         })
         break;
