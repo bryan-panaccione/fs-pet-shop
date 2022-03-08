@@ -32,10 +32,6 @@ app.get("/pets", (req, res) => {
 });
 
 app.get("/pets/:index", (req, res) => {
-  //index in the curlys needs to match variable above in get after :
-  //with brackets around index, console log of index is string 2
-  //without brackets console log index is an object with index : '2'
-  //WHY?
   const { index } = req.params;
   fs.readFile(DATAPATH, "utf-8", (err, data) => {
     if (err) throw err;
@@ -70,6 +66,58 @@ app.post("/pets", (req, res) => {
       });
     });
   }
+});
+
+app.patch("/pets/:index", (req, res) => {
+  const { index } = req.params;
+  let ageIntBool = typeof req.body.age === "number";
+  if (!req.body.age) ageIntBool === true;
+
+  if (!isNaN(index) && ageIntBool) {
+    let updateInfo = req.body;
+
+    fs.readFile(DATAPATH, "utf-8", (err, data) => {
+      let parsedData = JSON.parse(data);
+      if (err) throw err;
+      for (var key in parsedData[index]) {
+        if (updateInfo[key]) {
+          parsedData[index][key] = updateInfo[key];
+        }
+      }
+      fs.writeFile(DATAPATH, JSON.stringify(parsedData), (err2, data2) => {
+        if (err2) throw err2;
+        res.set("Content-Type", "text/plain").send(parsedData);
+      });
+    });
+  } else {
+    res
+      .set("Content-Type", "text/plain")
+      .status(404)
+      .send("invalid age, or index");
+  }
+});
+
+app.delete("/pets/:index", (req, res) => {
+  const { index } = req.params;
+  fs.readFile(DATAPATH, "utf-8", (err, data) => {
+    if (err) throw err;
+    const parsedData = JSON.parse(data);
+    const petSelected = parsedData[index];
+    parsedData.splice(index, 1);
+    if (petSelected) {
+      fs.writeFile(DATAPATH, JSON.stringify(parsedData), (err2, data2) => {
+        if (err2) throw err2;
+        res
+          .set("Content-Type", "application/json")
+          .send(JSON.stringify(petSelected));
+      });
+    } else {
+      res
+        .set("Content-Type", "text/plain")
+        .status(404)
+        .send("Your request doesnt exist you silly goose");
+    }
+  });
 });
 
 app.use((req, res, next) => {
