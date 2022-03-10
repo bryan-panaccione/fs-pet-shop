@@ -1,7 +1,6 @@
 const http = require("http");
 const fs = require("fs");
 const express = require("express");
-const PDFParser = require("pdf2json");
 
 const port = process.env.port || 8080;
 
@@ -18,7 +17,6 @@ function validatePet(pet) {
 
 const app = express();
 
-//Dont forget these, express got issues
 app.use(express.json());
 app.use(express.urlencoded());
 

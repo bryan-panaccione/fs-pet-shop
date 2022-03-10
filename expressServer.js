@@ -2,10 +2,27 @@ const http = require("http");
 const fs = require("fs");
 const express = require("express");
 const PDFParser = require("pdf2json");
+const { Pool } = require("pg");
 
 const port = process.env.port || 8080;
 
 const DATAPATH = "./pets.json";
+
+const pool = new Pool({
+  database: "petshopdb",
+  user: "bryan",
+  password: "password",
+});
+
+const petId = 2;
+
+// pool.query("SELECT * FROM pets WHERE id = $1", [petId], (err, result) => {
+//   console.log(result.rows);
+// });
+
+pool.query("SELECT * FROM pets", (err, result) => {
+  console.log(result.rows);
+});
 
 function validatePet(pet) {
   const ageFactor = Number.isNaN(parseInt(pet.age));
